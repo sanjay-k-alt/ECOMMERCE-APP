@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { assets } from "../assets/assets";
-import axios from "axios";  
+import axios from "axios"; 
+import { backendUrl } from "../App";
 import { toast } from "react-toastify";
 
- 
-
 const Add = () => {
-  const backendUrl = import.meta.env.VITE_API_URL;
 
   const token = localStorage.getItem("token");
 

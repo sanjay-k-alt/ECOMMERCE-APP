@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios"; 
 import { toast } from "react-toastify";
 
-const backendUrl = import.meta.env.VITE_API_URL;
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const Login = ({ setToken }) => {
   const [email, setEmail] = useState("");

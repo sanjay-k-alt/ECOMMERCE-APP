@@ -1,0 +1,60 @@
+services:
+  # Frontend (customer-facing app)
+  - type: web
+    name: ecommerce-frontend
+    runtime: node
+    buildCommand: cd frontend && npm install && npm run build
+    startCommand: cd frontend && npm run preview
+    envVars:
+      - key: VITE_API_URL
+        value: https://ecommerce-backend.onrender.com
+    routes:
+      - path: /
+        destination: /
+    publicDir: frontend/dist
+
+  # Admin Dashboard
+  - type: web
+    name: ecommerce-admin
+    runtime: node
+    buildCommand: cd admin && npm install && npm run build
+    startCommand: cd admin && npm run preview
+    envVars:
+      - key: VITE_API_URL
+        value: https://ecommerce-backend.onrender.com
+    routes:
+      - path: /admin
+        destination: /
+    publicDir: admin/dist
+
+  # Backend API
+  - type: web
+    name: ecommerce-backend
+    runtime: node
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: MONGODB_URI
+        fromDatabase:
+          name: ecommerce-db
+          property: connectionString
+      - key: JWT_SECRET
+        sync: false
+      - key: CLOUDINARY_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+      - key: RAZORPAY_KEY_ID
+        sync: false
+      - key: RAZORPAY_KEY_SECRET
+        sync: false
+      - key: STRIPE_SECRET_KEY
+        sync: false
+
+  # Optional: MongoDB Database
+  - type: pserv
+    name: ecommerce-db
+    runtime: mongo
+    ipAllowList: [] # Allow all IPs from Render services

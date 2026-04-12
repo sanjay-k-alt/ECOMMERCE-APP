@@ -43,6 +43,11 @@ app.get('/',(req,res)=>{
     res.send("API Working")
 })
 
-app.listen(port,()=>console.log('Server started on PORT : ' + port))
+// For local development only
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(process.env.PORT || 5000, () => {
+    console.log('Server started on PORT: ' + (process.env.PORT || 5000))
+  })
+}
 
 export default app;

@@ -10,14 +10,16 @@
       "src": "admin/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "buildCommand": "npm run build"
+        "buildCommand": "cd admin && npm install && npm run build",
+        "outputDirectory": "admin/dist"
       }
     },
     {
       "src": "frontend/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "buildCommand": "npm run build"
+        "buildCommand": "cd frontend && npm install && npm run build",
+        "outputDirectory": "frontend/dist"
       }
     }
   ],
@@ -35,11 +37,11 @@
       "dest": "admin/dist/index.html"
     },
     {
-      "src": "/(.*)",
-      "dest": "frontend/dist/index.html"
+      "src": "/(.*\\.\\w+)$",
+      "dest": "frontend/dist/$1"
     },
     {
-      "src": "/",
+      "src": "/(.*)",
       "dest": "frontend/dist/index.html"
     }
   ]

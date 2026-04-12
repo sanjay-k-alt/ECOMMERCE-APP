@@ -1,18 +1,30 @@
 {
-  "experimentalServices": {
-    "frontend": {
-      "entrypoint": "frontend",
-      "routePrefix": "/",
-      "framework": "vite"
+  "builds": [
+    { 
+      "src": "backend/api/index.js", 
+      "use": "@vercel/node",
+      "config": { "zeroConfig": true }
     },
-    "admin": {
-      "entrypoint": "admin",
-      "routePrefix": "/admin",
-      "framework": "vite"
+    { 
+      "src": "admin/package.json", 
+      "use": "@vercel/static-build",
+      "config": { 
+        "buildCommand": "npm run build",
+        "outputDirectory": "dist"
+      }
     },
-    "backend": {
-      "entrypoint": "backend",
-      "routePrefix": "/api"
+    { 
+      "src": "frontend/package.json", 
+      "use": "@vercel/static-build",
+      "config": { 
+        "buildCommand": "npm run build",
+        "outputDirectory": "dist"
+      }
     }
-  }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "backend/api/index.js" },
+    { "src": "/admin/(.*)", "dest": "admin/dist/index.html" },
+    { "src": "/(.*)", "dest": "frontend/dist/index.html" }
+  ]
 }

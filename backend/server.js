@@ -24,7 +24,8 @@ app.use(cors({
     'http://localhost:3000',
     'https://ecommerce-frontend.onrender.com',
     'https://ecommerce-admin.onrender.com',
-    'https://ecommerce-app-idfn.onrender.com'
+    'https://ecommerce-app-idfn.onrender.com',
+    'https://ecommerce-app-i6fn-git-main-sanjay-k-alts-projects.vercel.app'
   ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],

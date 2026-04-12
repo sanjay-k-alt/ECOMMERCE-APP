@@ -6,7 +6,7 @@ services:
     buildCommand: cd frontend && npm install && npm run build
     startCommand: cd frontend && npm run preview
     envVars:
-      - key: VITE_API_URL
+      - key: VITE_BACKEND_URL
         value: https://ecommerce-backend.onrender.com
     routes:
       - path: /
@@ -20,7 +20,7 @@ services:
     buildCommand: cd admin && npm install && npm run build
     startCommand: cd admin && npm run preview
     envVars:
-      - key: VITE_API_URL
+      - key: VITE_BACKEND_URL
         value: https://ecommerce-backend.onrender.com
     routes:
       - path: /admin

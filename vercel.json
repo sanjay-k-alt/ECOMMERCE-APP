@@ -1,26 +1,15 @@
 {
-  "buildCommand": "echo 'Monorepo build'",
-  "outputDirectory": ".",
   "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "buildCommand": "npm run build:all"
+      }
+    },
     {
       "src": "backend/api/index.js",
       "use": "@vercel/node"
-    },
-    {
-      "src": "admin/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "buildCommand": "cd admin && npm install && npm run build",
-        "outputDirectory": "admin/dist"
-      }
-    },
-    {
-      "src": "frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "buildCommand": "cd frontend && npm install && npm run build",
-        "outputDirectory": "frontend/dist"
-      }
     }
   ],
   "routes": [

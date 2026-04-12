@@ -1,0 +1,10 @@
+{
+  "name": "ecommerce-app",
+  "version": "1.0.0",
+  "description": "Full-stack ecommerce application",
+  "scripts": {
+    "build:all": "cd admin && npm install && npm run build && cd ../frontend && npm install && npm run build",
+    "build:frontend": "cd frontend && npm install && npm run build",
+    "build:admin": "cd admin && npm install && npm run build"
+  }
+}
